@@ -25,6 +25,7 @@ int main(int, char**)
 	csv::Parser Parser_train_data = csv::Parser("files/train.csv");
 	csv::Parser Parser_test_data = csv::Parser("files/test.csv");
 
+	// 4 feather
 	int train_labels[train_data_count];
 	float training_Data[train_data_count][4];
 
@@ -32,6 +33,7 @@ int main(int, char**)
 	float test_data[test_data_count][4];
 	int test_repone[test_data_count];
 
+	// csv -> array
 	for (int i = 0; i < train_data_count; i++)
 	{
 		train_labels[i] = atoi((Parser_train_data[i][0]).c_str());
@@ -52,21 +54,22 @@ int main(int, char**)
 		}
 	}
 
+	// array -> Mat
 	Mat training_data_Mat(train_data_count, 4, CV_32F, training_Data);
 	Mat labels_Mat(train_data_count, 1, CV_32SC1, train_labels);
 	Mat test_data_Mat(test_data_count, 4, CV_32F, test_data);
 	Mat test_repone_Mat(test_data_count, 1, CV_32SC1, test_repone);
 
 
-	// Train the SVM
+	// autoTrain the SVM
 	Ptr<SVM> svm = SVM::create();
 	Ptr<TrainData> Autotrain_parameter = TrainData::create(training_data_Mat, ROW_SAMPLE, labels_Mat);
 	svm->trainAuto(Autotrain_parameter);
-	
+
 
 	// svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
 	// svm->train(trainingDataMat, ROW_SAMPLE, labelsMat);
-	
+
 	cout << "Finished training process" << endl;
 
 	svm->save("svm.xml");
