@@ -2,14 +2,16 @@
 
 **env**
  - window 10
- - openCV 3.41
+ - openCV 3.41 (+extra modual)
  - visual studio 2017
  - C++
 
 **library**
  - libsvm https://www.csie.ntu.edu.tw/~cjlin/libsvm/
  - CSVparser https://github.com/MyBoon/CSVparser
-
+ - openCV https://github.com/opencv/opencv
+ - openCV extra modual  https://github.com/opencv/opencv_contrib
+ 
 **reference**
   - Handwritten Digits Classification : An OpenCV ( C++ / Python ) Tutorial
    https://github.com/spmallick/learnopencv/blob/master/digits-classification/train_digits.cpp
